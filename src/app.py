@@ -1,3 +1,4 @@
+# coding: utf-8
 import torch
 from animal import transform, Net # animal.py から
 from flask import Flask, request, render_template, redirect
@@ -51,9 +52,9 @@ def predicts():
             buf = io.BytesIO()
             image = Image.open(file).convert('RGB')
             image.save(buf, 'png')
-            #　バイナリデータbase64 でエンコード utf-8
+            #　バイナリデータbase64エンコード utf-8デコード
             base64_str = base64.b64encode(buf.getvalue()).decode('utf-8')
-            #　HTML側src付帯情報付与
+            #　HTML側src付帯情報
             base64_data = 'data:image/png;base64,{}'.format(base64_str)
 
             # 入力された画像推論
