@@ -8,9 +8,9 @@ import base64
 #  推論
 def predict(img):
     net = Net().cpu().eval()
-    net.load_state_dict(torch.load('dog_cat_data.pt', map_location=torch.device('cpu')))
+    net.load_state_dict(torch.load('./dog_cat_data.pt', map_location=torch.device('cpu')))
     img = transform(img)
-    img =img.unsqueeze(0)
+    img = img.unsqueeze(0)
     #　推論
     y = torch.argmax(net(img), dim=1).cpu().detach().numpy()
     return y
